@@ -17,6 +17,11 @@ class CreateRolesTable extends Migration
             $table->increments('id');
             $table->string('name');
         });
+
+        Schema::table('users', function ($table) {
+            $table->integer('role_id')->unsigned()->after('region_id');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+        });
     }
 
     /**
@@ -27,5 +32,9 @@ class CreateRolesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('roles');
+        Schema::table('users', function ($table) {
+            $table->dropForeign('role_id');
+            $table->dropColumn('role_id');
+        });
     }
 }

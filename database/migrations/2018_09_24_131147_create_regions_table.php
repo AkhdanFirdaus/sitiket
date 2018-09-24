@@ -17,6 +17,12 @@ class CreateRegionsTable extends Migration
             $table->increments('id');
             $table->string('name');
         });
+
+        Schema::table('users', function ($table) {
+            $table->mediumText('address');
+            $table->integer('region_id')->unsigned()->after('address');
+            $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
+        });
     }
 
     /**
@@ -27,5 +33,10 @@ class CreateRegionsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('regions');
+        Schema::table('users', function ($table) {
+            $table->dropForeign('region_id');
+            $table->dropColumn('region_id');
+            $table->dropColumn('address');
+        });
     }
 }
