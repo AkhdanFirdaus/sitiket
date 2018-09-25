@@ -19,7 +19,7 @@ class CreateRolesTable extends Migration
         });
 
         Schema::table('users', function ($table) {
-            $table->integer('role_id')->unsigned()->after('region_id');
+            $table->integer('role_id')->unsigned()->nullable()->after('region_id');
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
         });
     }

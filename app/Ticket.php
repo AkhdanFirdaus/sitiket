@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
-    public function order() {
-    	return $this->hasMany('App\Order');
+    public function event() {
+    	return $this->belongsTo('App\Ticket');
     }
 }

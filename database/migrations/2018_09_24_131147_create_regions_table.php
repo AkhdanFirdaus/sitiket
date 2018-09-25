@@ -19,8 +19,8 @@ class CreateRegionsTable extends Migration
         });
 
         Schema::table('users', function ($table) {
-            $table->mediumText('address');
-            $table->integer('region_id')->unsigned()->after('address');
+            $table->mediumText('address')->after('email');
+            $table->integer('region_id')->unsigned()->nullable()->after('address');
             $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
         });
     }

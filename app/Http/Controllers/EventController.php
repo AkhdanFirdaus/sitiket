@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Event;
 
-class OrderController extends Controller
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -43,18 +44,19 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($order_code)
+    public function show($slug)
     {
-        //
+        $event = Event::where('slug', $slug)->first();
+        return view('event.show-event')->withEvent($event);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $order_code
+     * @param  int  $slug
      * @return \Illuminate\Http\Response
      */
-    public function edit($order_code)
+    public function edit($slug)
     {
         //
     }
@@ -63,10 +65,10 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $order_code
+     * @param  int  $slug
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $order_code)
+    public function update(Request $request, $slug)
     {
         //
     }
@@ -74,10 +76,10 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $order_code
+     * @param  int  $slug
      * @return \Illuminate\Http\Response
      */
-    public function destroy($order_code)
+    public function destroy($slug)
     {
         //
     }

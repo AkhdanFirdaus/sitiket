@@ -17,6 +17,7 @@ class CreateTicketsTable extends Migration
             $table->increments('id');
             $table->enum('type', ['Pre Sale', 'Regular']);
             $table->float('price');
+            $table->integer('stock');
             $table->timestamps();
         });
     }

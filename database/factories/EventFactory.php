@@ -12,14 +12,14 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
-
+$factory->define(App\Event::class, function (Faker\Generator $faker) {
+    $nama = $faker->name;
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'address' => $faker->address,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'name' => $nama,
+        'slug' => str_slug($nama, '-'),
+        'user_id' => 1,
+        'location' => $faker->address,
+        'description' => 'lorem ipsum dolor sit amet',
+        'event_start' => \Carbon\Carbon::now()->addDays(2),     
     ];
 });
