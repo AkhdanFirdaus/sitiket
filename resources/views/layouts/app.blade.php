@@ -8,21 +8,21 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'siTiket') }} @yield('title', 'siTiket')</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('bs4/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="shortcut icon" type="text/css" href="">
-    @yield('style')
+    <link rel="stylesheet" type="text/css" href="{{asset('css/custom.css')}}">
+
+    <script type="text/javascript" src="{{asset('JQuery/jquery-3.3.1.min.js')}}"></script>
 </head>
 <body>
-    <div id="app">
+    <div id="app">    
         @include('partials.navbar')
         @yield('content')
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('bs4/js/bootstrap.min.js') }}"></script>
-    @yield('script')
 </body>
 </html>

@@ -10,13 +10,23 @@
     </div>
     @if(count($events) > 0)    
     <div class="row">
-        @foreach($events as $index => $event)
-        <div class="col-lg-4">
+        @foreach($events as $count => $event)
+        @if($count % 3 == 0)
+        </div><div class="row">
+        @endif
+        <div class="col-lg-4 mb-2">
             <div class="card border-0">
-                <div class="card-header bg-info text-light">{{$event->name}}</div>
-                <div class="card-body">
-                    <p>{{$event->description}}</p>
-                    <a href="{{route('event.show',$event->slug)}}">Lihat Selengkapnya</a>
+                <div class="card-header bg-info text-light" data-toggle="collapse" href="#eventInfo{{$event->id}}" role="button" aria-expanded="false">{{$event->name}}</div>
+                <div class="collapse" id="eventInfo{{$event->id}}">
+                    <div class="card-body">
+                        <p>{{$event->description}}</p>
+                        <p>Tiket :
+                        @foreach($event->ticket as $count => $ticket)
+                            IDR {{number_format($ticket->price, null, ',', '.')}}
+                        @endforeach
+                        </p>
+                        <a href="{{route('event.show',$event->slug)}}">Lihat Selengkapnya</a>
+                    </div>
                 </div>
             </div>
         </div>

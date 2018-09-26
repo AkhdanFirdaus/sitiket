@@ -20,6 +20,7 @@
 		</div>
 		<hr>
 		<h4 class="text-center my-4">Ticket</h4>
+		<a href="{{route('ticket.create')}}" class="btn btn-link">Add Ticket</a>
 		<div class="row">
 			<table class="table text-center bg-light">
 				<thead>
@@ -39,11 +40,7 @@
 						<td id="price">{{$ticket->price}}</td>
 						<td>{{$ticket->stock}}</td>
 						<td>
-							<select type="number" name="qty" id="qty" class="form-control">
-								@for($i = 0; $i<= $ticket->stock; $i++)
-								<option value="{{$i}}">{{$i}}</option>
-								@endfor
-							</select>
+							<input type="number" id="calculateTotal" name="qty" min="1" max="20">
 						</td>
 					</tr>
 					@endforeach
@@ -51,7 +48,7 @@
 						<th scope="row" colspan="3" class="text-right">
 							Total Harga
 						</th>
-						<td scope="col">
+						<td scope="col" class="harga">
 							Harga
 						</td>
 						<td class="text-right" colspan="2">
@@ -67,6 +64,11 @@
 
 @section('script')
 <script type="text/javascript">
-	var total = document.getElementById('price').val() * document.getElementById('qty').val();
+$('.table tr').each(function() {
+	var price = $(this).find('#price').html();
+})
+// $(':input').on('keyup mouseup', function() {
+
+// })
 </script>
 @endsection
